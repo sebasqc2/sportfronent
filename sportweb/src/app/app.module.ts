@@ -1,25 +1,28 @@
-import {FormsModule,ReactiveFormsModule} from '@angular/forms';
+import {FormsModule} from '@angular/forms';
 
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { UserService } from './shared/services/user.service';
-import { UsersComponent } from './views/users/users.component';
+import { LoginComponent } from './views/login/login.component';
+import { HttpClientModule } from '@angular/common/http';
+import { HomeComponent } from './views/home/home.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    UsersComponent
+    LoginComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
-    FormsModule,
-    ReactiveFormsModule
+    FormsModule
   ],
-  providers: [UserService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
