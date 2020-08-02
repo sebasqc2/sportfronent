@@ -22,8 +22,7 @@ export class UsersComponent implements OnInit {
     });
   }
 
-  ngOnInit() {
-    this.refreshUsers();
+  ngOnInit():void {
   }
   refreshUsers() {
     this.users = this.userService.users;
@@ -47,4 +46,5 @@ export class UsersComponent implements OnInit {
     this.userService.toggle(id);
     this.refreshUsers();
   }
+
 }
