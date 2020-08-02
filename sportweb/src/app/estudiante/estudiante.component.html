@@ -1,0 +1,262 @@
+<div class="container">
+  <!-- Vertical navbar -->
+  <div class="vertical-nav bg-white" id="sidebar">
+    <div class="py-4 px-3 mb-4 bg-light">
+      <div class="media d-flex align-items-center">
+        <div class="media-body">
+          <br>
+          <h4 class="m-0">Pedro Arvelaez</h4>
+          <p class="font-weight-light text-muted mb-0">Docente</p>
+          <br>
+        </div>
+      </div>
+    </div>
+
+    <p class="text-gray font-weight-bold text-uppercase px-3 small pb-4 mb-0">Menu</p>
+
+    <ul class="nav flex-column bg-white mb-0">
+      <li class="nav-item">
+        <a href="#" class="nav-link text-dark font-italic bg-light">
+          <i class="fa fa-address-card mr-3 text-primary fa-fw"></i>
+          Estidantes
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="#" class="nav-link text-dark font-italic ">
+          <i class="fa fa-th-large mr-3 text-primary fa-fw"></i>
+          Actividades
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="#" class="nav-link text-dark font-italic">
+          <i class="fas fa-search mr-3 text-primary fa-fw"></i>
+          Consultar
+        </a>
+      </li>
+    </ul>
+  </div>
+  <!-- End vertical navbar -->
+
+  <div class="page-content p-6" id="content">
+    <button id="sidebarCollapse" type="button" class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4"><i
+        class="fa fa-bars mr-2"></i><small class="text-uppercase font-weight-bold">MENU</small></button>
+    <div class="container">
+      <h1 style="text-align: center;">VER ESTUDIANTES </h1>
+      <br>
+      <br>
+      <div class="row">
+        <div class="col-sm-6">
+          <input type="text" class="form-control" placeholder="Buscar por nombre o codigo..." [(ngModel)]="this.entrada"
+            required>
+          <br>
+        </div>
+        <div class="col-sm-1"></div>
+        <div class="col-sm-1">
+          <button type="submit" class="btn btn-success" (click)="getBuscar()">Cargar</button>
+        </div>
+        <div class="col-sm-1"></div>
+        <div class="col-sm-1">
+          <button type="button" class="btn btn-light" (click)="getEstudiantes()">Limpiar</button>
+        </div>
+        <div class="col-sm-2"></div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12">
+        <table class="table table-responsive table table-sm">
+          <thead class="thead-dark">
+            <tr>
+              <th>CODIGO</th>
+              <th>NOMBRE</th>
+              <th>APELLIDO</th>
+              <th>FECHA NACIMIENTO</th>
+              <th>DIRECCIÓN</th>
+              <th>TELÉFONO</th>
+              <th>CORREO</th>
+              <th>ESTADO</th>
+              <th>FECHA INGRESO</th>
+              <th>ACUDIENTE</th>
+              <th>UNIFORME</th>
+              <th>CATEGORIA</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let i of model">
+              <td>{{i.ID_ALUMNO}}</td>
+              <td>{{i.NOMBRE}} </td>
+              <td>{{i.APELLIDO}} </td>
+              <td>{{i.FECHA_NACIMIENTO}} </td>
+              <td>{{i.DIRECCION}} </td>
+              <td>{{i.TELEFONO}} </td>
+              <td>{{i.CORREO}} </td>
+              <td>{{i.ESTADO}} </td>
+              <td>{{i.FECHA_INGRESO}} </td>
+              <td><a href="#" (click)="mostrarAcudiente(i)">{{i.acudiente.ID_ACUDIENTE}}</a></td>
+              <td>
+                <button type="submit" class="btn btn btn-light " (click)="mostrarUniforme(i)">
+                  <i class="icon fa fa-shopping-bag mr-3 text-primary fa-fw"></i>
+                </button>
+              </td>
+              <td>
+                <button type="submit" class="btn btn btn-light " (click)="mostrarInfo(i)">
+                  <i class="icon fas fa-sitemap mr-3 text-primary fa-fw"></i>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+
+    <ng-template #myModalInfo let-modal>
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Información Estudiante</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="modal.close()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="form-group" style="text-align: justify; font-size: 1.2em">
+              <div class="row">
+                <div class="col-sm-4">
+                  <label for="formGroupExampleInput">Código: </label>
+                </div>
+                <div class="col-sm-7">
+                  <input type="text" type="text" class="form-control" id="nombre"
+                    [(ngModel)]="this.infoAlumno.ID_ALUMNO" name="codigo" disabled>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-4">
+                  <label for="formGroupExampleInput2">Nombre: </label>
+                </div>
+                <div class="col-sm-7">
+                  <input type="text" type="text" class="form-control" id="nombre" [(ngModel)]="this.infoAlumno.NOMBRE"
+                    name="nombre" disabled>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-4">
+                  <label for="formGroupExampleInput2">Apellido: </label>
+                </div>
+                <div class="col-sm-7">
+                  <input type="text" type="text" class="form-control" id="nombre" [(ngModel)]="this.infoAlumno.APELLIDO"
+                    name="apellido" disabled>
+                </div>
+              </div>
+              <br>
+            </div>
+          </form>
+
+          <div class="row">
+            <div class="col-sm-12">
+              <table class="table table-sm">
+                <thead class="thead-dark">
+                  <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Valor</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let i of infoAlumno.valoraciones">
+                    <td>{{i.ID_VALORACION}}</td>
+                    <td>{{i.NOMBRE}}</td>
+                    <td>{{i.VALOR}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+
+    <ng-template #AcudienteInfo let-modal>
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Información Acudiente</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="modal.close()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="form-group" style="text-align: justify; font-size: 1.2em">
+              <div class="row">
+                <div class="col-sm-4">
+                  <label for="formGroupExampleInput">Código: </label>
+                </div>
+                <div class="col-sm-7">
+                  <input type="text" type="text" class="form-control" id="codigoA"
+                    [(ngModel)]="this.infoAcudiente.ID_ACUDIENTE" name="codigo" disabled>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-4">
+                  <label for="formGroupExampleInput2">Nombre: </label>
+                </div>
+                <div class="col-sm-7">
+                  <input type="text" type="text" class="form-control" id="nombreA"
+                    [(ngModel)]="this.infoAcudiente.NOMBRE" name="nombre" disabled>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-4">
+                  <label for="formGroupExampleInput2">Apellido: </label>
+                </div>
+                <div class="col-sm-7">
+                  <input type="text" type="text" class="form-control" id="apellidoA"
+                    [(ngModel)]="this.infoAcudiente.APELLIDO" name="apellido" disabled>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-4">
+                  <label for="formGroupExampleInput2">Direccion: </label>
+                </div>
+                <div class="col-sm-7">
+                  <input type="text" type="text" class="form-control" id="direccionA"
+                    [(ngModel)]="this.infoAcudiente.DIRECCION" name="direccion" disabled>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-4">
+                  <label for="formGroupExampleInput2">Telefono: </label>
+                </div>
+                <div class="col-sm-7">
+                  <input type="text" type="text" class="form-control" id="telefonoA"
+                    [(ngModel)]="this.infoAcudiente.TELEFONO" name="telefono" disabled>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-4">
+                  <label for="formGroupExampleInput2">Correo: </label>
+                </div>
+                <div class="col-sm-7">
+                  <input type="text" type="text" class="form-control" id="correoA"
+                    [(ngModel)]="this.infoAcudiente.CORREO" name="correo" disabled>
+                </div>
+              </div>
+              <br>
+              <div class="row">
+                <div class="col-sm-2"></div>
+                <div class="col-sm-4">
+                  <label for="formGroupExampleInput">Contrato: </label>
+                </div>
+                <div class="col-sm-4">
+                    <button type="submit" class="btn btn btn-light ">
+                    <i class="icon fa fa-file mr-3 text-primary fa-fw"></i>
+                  </button>
+                </div>
+                <div class="col-sm-2"></div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </ng-template>
+  </div>
+</div>

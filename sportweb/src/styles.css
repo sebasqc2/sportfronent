@@ -1,1 +1,20 @@
 /* You can add global styles to this file, and also import other style files */
+also import other style files */
+
+.largeModal .modal-dialog {
+    max-width: 1500px;
+}
+
+.mediumModal .modal-dialog {
+    max-width: 1000px;
+}
+
+.smallModal .modal-dialog {
+    max-width: 800px;
+}
+.printingModal .modal-dialog {
+  max-width: 1250px;
+}
+.alertModal .modal-dialog {
+    max-width: 500px;
+}
