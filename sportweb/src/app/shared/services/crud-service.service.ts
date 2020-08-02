@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { environment } from '../environments/environment.prod';
+import { environment } from '../../../environments/environment.prod';
 
 
 @Injectable({
@@ -9,22 +9,24 @@ import { environment } from '../environments/environment.prod';
 })
 export class CrudServiceService {
   private serverURL = environment.serverUrl;
-  private local:string = localStorage.getItem('token');
+  private local: string = localStorage.getItem('token');
 
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
-      "Authorization":  "Bearer " + this.local
+      "Authorization":  `Bearer ${this.local}`
     })
   };
 
   constructor(private http: HttpClient) {}
 
+  // tslint:disable-next-line: typedef
   buildHeaders() {
     this.httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        "Authorization":  "Bearer " + this.local
+        // tslint:disable-next-line: quotemark
+        "Authorization": `Bearer ${this.local}`
       })
     };
   }
@@ -55,7 +57,7 @@ export class CrudServiceService {
   }
 
   public getModel(path): Observable<any> {
-    this.buildHeaders()
+    this.buildHeaders();
     return this.http.get<any>(`${this.serverURL}${path}`, this.httpOptions);
   }
   public getModelModel(path, model): Observable<any> {

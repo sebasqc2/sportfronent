@@ -1,22 +1,30 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { UsuarioModel } from '../../shared/model/usuario.model';
 import { map } from 'rxjs/operators';
+import { environment } from '../../../environments/environment.prod';
+
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  // http://localhost:1337/auth/local
-  private url ='http://localhost:1337/auth/local'
+  private url = 'sportbackend-heroku.herokuapp.com/auth/local';
+  private serverURL = environment.serverUrl;
 
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json'
+    })
+  };
 
   constructor(private http: HttpClient ) {
-    this.logout()
+    this.logout();
    }
 
 
+  // tslint:disable-next-line: typedef
   logout() {
     localStorage.removeItem('token');
     localStorage.removeItem('email');
@@ -25,6 +33,7 @@ export class AuthService {
 
   }
 
+  // tslint:disable-next-line: typedef
   login( usuario: UsuarioModel ) {
     const authData = {
       identifier: usuario.email,
@@ -32,15 +41,16 @@ export class AuthService {
     };
 
     return this.http.post(
-      `${ this.url }`, authData
+      `${ this.serverURL}auth/local`, authData, this.httpOptions
     ).pipe(
-      map(resp =>{
+      map(resp => {
         this.guardarDatos( resp['jwt'], resp['user'].username , resp['user'].role.name);
         return resp;
       })
     );
   }
 
+  // tslint:disable-next-line: typedef
   private guardarDatos(token: string, username: string, role: string){
     localStorage.setItem('token', token);
     localStorage.setItem('usuario', username);
@@ -48,7 +58,18 @@ export class AuthService {
 
   }
 
-  isAuth():boolean{
+
+
+  // tslint:disable-next-line: typedef
+  buildHeaders1() {
+    this.httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    };
+  }
+
+  isAuth(): boolean{
     if (localStorage.getItem('token')) {
       return true;
     }else{
