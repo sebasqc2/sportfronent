@@ -44,6 +44,7 @@ export class AuthService {
       `${ this.serverURL}auth/local`, authData, this.httpOptions
     ).pipe(
       map(resp => {
+        // tslint:disable-next-line: no-string-literal
         this.guardarDatos( resp['jwt'], resp['user'].username , resp['user'].role.name);
         return resp;
       })

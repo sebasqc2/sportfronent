@@ -8,6 +8,4 @@ export class Valoraciones{
         this.NOMBRE = '';
         this.VALOR = '';
     }
-
-
 }

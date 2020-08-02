@@ -14,6 +14,8 @@ export class CrudServiceService {
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
+      // tslint:disable-next-line: quotemark
+      // tslint:disable-next-line: object-literal-key-quotes
       "Authorization":  `Bearer ${this.local}`
     })
   };
@@ -26,6 +28,7 @@ export class CrudServiceService {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
         // tslint:disable-next-line: quotemark
+        // tslint:disable-next-line: object-literal-key-quotes
         "Authorization": `Bearer ${this.local}`
       })
     };
@@ -45,10 +48,12 @@ export class CrudServiceService {
   }
 
   public createModelParams(path, model, params): Observable<any> {
+    // tslint:disable-next-line: object-literal-shorthand
     return this.http.post<any>(`${this.serverURL}${path}`, model, { headers: this.httpOptions.headers, params: params });
   }
 
   public putModelParams(path, model, params): Observable<any> {
+    // tslint:disable-next-line: object-literal-shorthand
     return this.http.put<any>(`${this.serverURL}${path}`, model, { headers: this.httpOptions.headers, params: params });
   }
 

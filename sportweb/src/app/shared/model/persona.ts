@@ -6,7 +6,7 @@ export class Persona{
     public CORREO: string;
     public ESTADO: boolean;
 
-    constructor() { 
+    constructor() {
         this.NOMBRE = '';
         this.APELLIDO = '';
         this.DIRECCION = '';
