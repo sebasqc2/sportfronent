@@ -23,7 +23,7 @@
         <div class="card-content">
           <span class="card-title">Agregar una Actividad</span>
           <form (ngSubmit)="guardarNuevaActividad(formNew)" #formNew="ngForm" class="col s12">
-            <!--{{formNew.value | json}}-->
+            {{formNew.value | json}}
             <div class="row">
               <div class="input-field col s6">
                 <input ngModel type="text" name="nombre" id="nombre" placeholder="Nombre Actividad">
@@ -34,11 +34,15 @@
                 <label>Lugar</label>
               </div>
               <div class="input-field col s6">
-                <input ngModel type="text" name="nombrecurso" id="nombrecurso" placeholder="Formador curso">
+                <select id="selectCurso">
+                  <option value="" disabled selected>selecciona el curso</option>
+                </select>
                 <label>Nombre del curso</label>
               </div>
               <div class="input-field col s6">
-                <input ngModel type="text" name="nombrecategoria" id="nombrecategoria" placeholder="Categoria del curso">
+                <select id="selectCategoria">
+                  <option value="" disabled selected>selecciona categoria del curso</option>
+                </select>
                 <label>Identificador Categoria</label>
               </div>
               <div class="input-field col s6">
@@ -51,7 +55,7 @@
                 <label>Hora</label>
               </div>
               <div class="input-field col s6">
-                <select>
+                <select id="selectDuracion">
                   <option value="" disabled selected>selecciona la duracion en horas</option>
                   <option value="1">1</option>
                   <option value="2">2</option>

@@ -1,6 +1,6 @@
 export interface categoriasInterface {
-    idCurso?: string;
-    idDeporte: string;
+    idCategoria?: string;
+    idCurso: string;
     idEntrenador: string;
-    nombreCurso: string;
+    nombreCategoria: string;
 }

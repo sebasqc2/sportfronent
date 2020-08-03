@@ -8,15 +8,15 @@ export interface Iservicioback {
      * obtiene todos los cursos disponibles  en la escuela
      * obtenerCursos
      */
-    obtenerCursos(url: string): Array<cursosInterface>;
+    obtenerCursos(url: string);
 
     /**
      * Agrega una actividad a la lista de actividades de la escuela
      */
-    agregarActividad(url: string,actividad: actividadInterface): actividadInterface; 
+    agregarActividad(url: string,actividad: actividadInterface); 
 
     /**
      * obtenerCategorias
      */
-     obtenerCategorias(url: string): Array<categoriasInterface>;
+     obtenerCategorias(url: string);
 }

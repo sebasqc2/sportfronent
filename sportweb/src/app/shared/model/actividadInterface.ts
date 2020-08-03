@@ -1,6 +1,6 @@
 export interface actividadInterface {
     idactividad?: string;
-    curso: string;
+    categoria: string;
     lugar: string;
     nombreactividad: string;
     fecha: Date;
