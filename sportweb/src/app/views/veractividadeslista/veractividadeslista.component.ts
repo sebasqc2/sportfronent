@@ -88,7 +88,10 @@ export class VeractividadeslistaComponent implements OnInit {
 
   agregarActividad() {
     this.servicio.agregarActividad("https://sportbackend-heroku.herokuapp.com/actividades", this.newActividad).subscribe(actividad => {
-      console.log(actividad);
+      if(actividad){
+        console.log(actividad);
+        M.toast({html: 'Actividad agregada con exito'})
+      }
     });
   }
 
