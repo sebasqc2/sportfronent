@@ -21,6 +21,9 @@ export class EstudianteComponent implements OnInit {
   infoAlumno: Alumno;
   infoAcudiente: Acudiente;
 
+  usuario: string = localStorage.getItem('usuario');
+  rol: string = localStorage.getItem('rol');
+
   constructor(private crudServices: CrudServiceService, private modalService: NgbModal) {
 
     this.model = [];
