@@ -1,12 +1,13 @@
-import {FormsModule,ReactiveFormsModule} from '@angular/forms';
-
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { EstudianteComponent } from './views/estudiante/estudiante.component';
+import { LoginComponent } from './views/login/login.component';
 import { AppComponent } from './app.component';
-import { UserService } from './shared/services/user.service';
 import { UsersComponent } from './views/users/users.component';
 import { NavbarComponent } from './views/navbar/navbar.component';
 import { FooterComponent } from './views/footer/footer.component';
@@ -20,16 +21,21 @@ import { VeractividadeslistaComponent } from './views/veractividadeslista/veract
     NavbarComponent,
     FooterComponent,
     SidenavComponent,
-    VeractividadeslistaComponent
+    VeractividadeslistaComponent,
+    EstudianteComponent,
+    LoginComponent
+
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AppRoutingModule,
+    NgbModule
+
   ],
-  providers: [UserService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
