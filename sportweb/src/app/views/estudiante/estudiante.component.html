@@ -1,47 +1,12 @@
-<div class="container">
-    <!-- Vertical navbar -->
-    <div class="vertical-nav bg-white" id="sidebar">
-        <div class="py-4 px-3 mb-4 bg-light">
-            <div class="media d-flex align-items-center">
-                <div class="media-body">
-                    <br>
-                    <h4 class="m-0">{{usuario}}</h4>
-                    <p class="font-weight-light text-muted mb-0">{{rol}}</p>
-                    <br>
-                </div>
-            </div>
-        </div>
+<app-sidenav></app-sidenav>
+<div class="container-sport100">
 
-        <p class="text-gray font-weight-bold text-uppercase px-3 small pb-4 mb-0">Menu</p>
-
-        <ul class="nav flex-column bg-white mb-0">
-            <li class="nav-item">
-                <a href="#" class="nav-link text-dark font-italic bg-light">
-                    <i class="fa fa-address-card mr-3 text-primary fa-fw"></i> Estudiantes
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="#" class="nav-link text-dark font-italic ">
-                    <i class="fa fa-th-large mr-3 text-primary fa-fw"></i> Actividades
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="#" class="nav-link text-dark font-italic">
-                    <i class="fas fa-search mr-3 text-primary fa-fw"></i> Consultar
-                </a>
-            </li>
-        </ul>
-    </div>
-    <!-- End vertical navbar -->
-
-    <div class="page-content p-12" id="content">
-        <button id="sidebarCollapse" type="button" class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4"><i
-        class="fa fa-bars mr-2"></i><small class="text-uppercase font-weight-bold">MENU</small></button>
-        <div class="container">
+    <div class="page-content p-12 align-items-center" id="content">
+        <!--<button id="sidebarCollapse" type="button" class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4"><i
+        class="fa fa-bars mr-2"></i><small class="text-uppercase font-weight-bold">MENU</small></button>-->
+        <div class="container ">
             <h1 style="text-align: center;">VER ESTUDIANTES </h1>
-            <br>
-            <br>
-            <div class="row">
+            <div class=" row ">
                 <div class="col-sm-6">
                     <input type="text" class="form-control" placeholder="Buscar por nombre o codigo..." [(ngModel)]="this.entrada" required>
                     <br>
@@ -57,9 +22,9 @@
                 <div class="col-sm-2"></div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-sm-12">
-                <table class="table table-responsive table table-sm">
+        <div class=" tabla  ">
+            <div class="col-sm-12 align-items-center">
+                <table class="table table-responsive table table-sm ">
                     <thead class="thead-dark">
                         <tr>
                             <th>CODIGO</th>

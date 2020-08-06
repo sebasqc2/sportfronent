@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { cursosInterface } from '../../shared/model/cursosInterface'
-import { actividadInterface } from '../../shared/model/actividadInterface'
-import * as M from '../../../../node_modules/materialize-css/dist/js/materialize.min.js'
+import { cursosInterface } from '../../shared/model/cursosInterface';
+import { actividadInterface } from '../../shared/model/actividadInterface';
+import * as M from '../../../../node_modules/materialize-css/dist/js/materialize.min.js';
 import { ServiciobackService } from '../../shared/services/servicioback.service';
 import { categoriasInterface } from 'src/app/shared/model/categoriasInterface';
 import { Element } from '@angular/compiler';
@@ -22,7 +22,7 @@ export class VeractividadeslistaComponent implements OnInit {
   datosCursos: any;
 
   optionsDate: object = {
-    format: "dddd mmmm yyyy",
+    format: 'dddd mmmm yyyy',
     minDate: new Date()
   };
 
@@ -30,25 +30,25 @@ export class VeractividadeslistaComponent implements OnInit {
     twelveHour: false
   };
 
-  optionsSelectcursos: object ={
+  optionsSelectcursos: object = {
     dropdownOptions: {
-      onCloseEnd: ()=>{
+      onCloseEnd: () => {
         console.log(this.selectcurso.input.value);
-        //document.querySelector('#selectCategoria').innerHTML = this.obtenerNombresCategorias(this.selectcurso.input.value);
-        var elems5 = document.querySelector('#selectCategoria');
+        // document.querySelector('#selectCategoria').innerHTML = this.obtenerNombresCategorias(this.selectcurso.input.value);
+        const elems5 = document.querySelector('#selectCategoria');
         this.selectcategoria = M.FormSelect.init(elems5);
       }
     }
   }
 
   newActividad: actividadInterface = {
-    categoria: "",
-    lugar: "",
-    nombreactividad: "",
+    categoria: '',
+    lugar: '',
+    nombreactividad: '',
     fecha: new Date(),
-    horainicio: "",
+    horainicio: '',
     duracion: 0,
-    observaciones: ""
+    observaciones: ''
   };
 
   constructor(public servicio: ServiciobackService) {
@@ -57,7 +57,7 @@ export class VeractividadeslistaComponent implements OnInit {
 
   ngOnInit(): void {
     this.obtenerdatoscursos();
-    var elems1 = document.querySelectorAll('.modal');
+    const elems1 = document.querySelectorAll('.modal');
     var instances = M.Modal.init(elems1);
     var elems2 = document.querySelectorAll('.datepicker');
     this.calendario = M.Datepicker.init(elems2, this.optionsDate);
@@ -88,18 +88,19 @@ export class VeractividadeslistaComponent implements OnInit {
 
   agregarActividad() {
     this.servicio.agregarActividad("https://sportbackend-heroku.herokuapp.com/actividades", this.newActividad).subscribe(actividad => {
-      if(actividad){
+      if (actividad){
         console.log(actividad);
         M.toast({html: 'Actividad agregada con exito'})
       }
     });
   }
 
+  // tslint:disable-next-line: typedef
   obtenerdatoscursos() {
     this.servicio.obtenerCursos("https://sportbackend-heroku.herokuapp.com/deportes").subscribe(arrayCursos => {
-       
-     this.datosCursos = Object.values(arrayCursos);  
-      console.log(this.datosCursos);   
+
+     this.datosCursos = Object.values(arrayCursos);
+      console.log(this.datosCursos);
     });
   }
 

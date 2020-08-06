@@ -7,13 +7,12 @@ import * as M from '../../../../node_modules/materialize-css/dist/js/materialize
   styleUrls: ['./sidenav.component.css']
 })
 export class SidenavComponent implements OnInit {
-
+  usuario: string = localStorage.getItem('usuario');
+  rol: string = localStorage.getItem('rol');
   constructor() { }
 
   ngOnInit(): void {
-    var elems = document.querySelectorAll('.sidenav');
-    var instances = M.Sidenav.init(elems);
-
-    
+    let elems = document.querySelectorAll('.sidenav');
+    let instances = M.Sidenav.init(elems);
   }
 }

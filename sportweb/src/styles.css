@@ -1,7 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
-also import other style files */
 
-.largeModal .modal-dialog {
+also import other style files */ .largeModal .modal-dialog {
     max-width: 1500px;
 }
 
@@ -12,9 +11,21 @@ also import other style files */
 .smallModal .modal-dialog {
     max-width: 800px;
 }
+
 .printingModal .modal-dialog {
-  max-width: 1250px;
+    max-width: 1250px;
 }
+
 .alertModal .modal-dialog {
     max-width: 500px;
+}
+
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+main {
+    flex: 1 0 auto;
 }
