@@ -29,7 +29,7 @@ export class AuthService {
     localStorage.removeItem('token');
     localStorage.removeItem('email');
     localStorage.removeItem('usuario');
-    localStorage.removeItem('usuario');
+    localStorage.removeItem('rol');
 
   }
 

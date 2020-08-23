@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import Swal from 'sweetalert2';
+//import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+//import Swal from 'sweetalert2';
 
 import { Alumno } from '../../shared/model/alumno';
 import { Acudiente } from '../../shared/model/acudiente';
@@ -24,7 +24,9 @@ export class EstudianteComponent implements OnInit {
   usuario: string = localStorage.getItem('usuario');
   rol: string = localStorage.getItem('rol');
 
-  constructor(private crudServices: CrudServiceService, private modalService: NgbModal) {
+  constructor(private crudServices: CrudServiceService
+    , private modalService: NgbModal
+    ) {
 
     this.model = [];
     this.infoAlumno = new Alumno();
@@ -32,16 +34,15 @@ export class EstudianteComponent implements OnInit {
     this.entrada = '';
     this.bandera = false;
   }
-// tslint:disable-next-line: typedef
+  // tslint:disable-next-line: typedef
   ngOnInit() {
-    this.getEstudiantes();
+    this.getDatosEstudiantes();
   }
   // tslint:disable-next-line: typedef
   onSubmit() {
   }
 
-  // tslint:disable-next-line: typedef
-  mostrarUniforme(alumno: Alumno){
+  mostrarUniforme(alumno: Alumno): void{
     Swal.fire({
       icon: 'error',
       title: 'Oops...',
@@ -49,30 +50,35 @@ export class EstudianteComponent implements OnInit {
     });
   }
 
-  // tslint:disable-next-line: typedef
-  mostrarAcudiente(alumno: Alumno) {
+  mostrarAcudiente(alumno: Alumno): void {
     this.infoAcudiente = alumno.acudiente;
     this.modalService.open(this.AcudienteInfo, {size: 'lg'});
   }
 
-  // tslint:disable-next-line: typedef
-  mostrarInfo(alumno: Alumno) {
+  mostrarInfo(alumno: Alumno): void {
     this.infoAlumno = alumno;
     this.modalService.open(this.myModalInfo, {size: 'lg'});
   }
 
-  // tslint:disable-next-line: typedef
-  retardo() {
-    return new Promise(resolve => {
-      setTimeout(() => {
-        resolve('resolved');
-      }, 600);
-    });
+
+  retardo(milis: number): any {
+     return new Promise(resolve => {
+       setTimeout(() => {
+         resolve('resolved');
+       }, milis);
+     });
   }
 
-  // tslint:disable-next-line: typedef
-  getEstudiantes() {
-    this.crudServices.getModel('alumnos').subscribe(
+  getDatosEstudiantes(): void{
+    if (localStorage.getItem('usuario') !== 'Administrador') {
+      this.getEstudiantes(`alumnos/find/${localStorage.getItem('usuario')}`);
+    }else{
+      this.getEstudiantes('alumnos');
+    }
+  }
+
+  getEstudiantes(ruta: string): void {
+    this.crudServices.getModel(ruta).subscribe(
       data => {
         if (JSON.stringify(data) === '[]') {
           Swal.fire({
@@ -86,58 +92,36 @@ export class EstudianteComponent implements OnInit {
   }
 
   // tslint:disable-next-line: typedef
-  async getBuscar() {
-    if (this.entrada ) {
-      this.bandera = false;
-      this.getBuscarCodigo();
+  async busqueda(){
 
-      console.log('calling');
-      const result = await this.retardo();
-      console.log(result);
-
-      this.getBuscarNombre();
-      this.entrada = null;
-    } else {
-      Swal.fire({ icon: 'error', title: 'Error...', text: 'Campo requerido' });
+    if (!this.bandera) {
+      await this.consulta('alumnos/nombre/');
+      await this.retardo(300);
     }
+    if (!this.bandera) {
+      await this.consulta('alumnos/apellido/');
+      await this.retardo(300);
+    }
+    if (!this.bandera) {
+      await this.consulta('alumnos/documento/');
+      await this.retardo(300);
+    }
+    if (!this.bandera) {
+      Swal.fire({ icon: 'warning', title: 'Error...', text: 'No se ha encontrado estudiante!' });
+    }
+    this.bandera = false;
 
   }
 
-  // tslint:disable-next-line: typedef
-  getBuscarCodigo() {
-    this.crudServices.getModel('alumnos?ID_ALUMNO=' + this.entrada).subscribe(
+  consulta(ruta: string): void{
+    this.crudServices.getModel( `${ruta}${this.entrada}`).subscribe(
       data => {
-        if (JSON.stringify(data) === '[]') {
-          Swal.fire({ icon: 'warning', title: 'Error...', text: 'No se ha encontrado estudiante!' });
-          this.bandera = true;
-        } else {
+        if (JSON.stringify(data) !== '[]') {
           this.model = data;
           this.bandera = true;
         }
       }, (err) => {
-        console.log('Error: Interno id' );
-        // console.log(err);
-
-
-      }
-      );
-  }
-
-  // tslint:disable-next-line: typedef
-  getBuscarNombre() {
-    this.crudServices.getModel('alumnos?NOMBRE=' + this.entrada).subscribe(
-      data => {
-        if (!this.bandera) {
-          if (JSON.stringify(data) === '[]' || data === '') {
-            Swal.fire({ icon: 'warning', title: 'Error...', text: 'No se ha encontrado estudiante!' });
-            return;
-          } else {
-            this.model = data;
-          }
-        }
-      }, (err) => {
-        console.log('Error: Interno nombre' );
-        // console.log(err);
+        console.log('Error Interno' );
       }
       );
   }

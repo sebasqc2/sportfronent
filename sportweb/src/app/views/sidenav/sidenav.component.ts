@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import * as M from '../../../../node_modules/materialize-css/dist/js/materialize.min.js'
+//import * as M from '../../../../node_modules/materialize-css/dist/js/materialize.min.js'
 
 @Component({
   selector: 'app-sidenav',

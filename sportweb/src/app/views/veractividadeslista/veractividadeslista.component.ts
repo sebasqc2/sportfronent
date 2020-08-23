@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { cursosInterface } from '../../shared/model/cursosInterface';
 import { actividadInterface } from '../../shared/model/actividadInterface';
-import * as M from '../../../../node_modules/materialize-css/dist/js/materialize.min.js';
+//import * as M from '../../../../node_modules/materialize-css/dist/js/materialize.min.js';
 import { ServiciobackService } from '../../shared/services/servicioback.service';
 import { categoriasInterface } from 'src/app/shared/model/categoriasInterface';
-import { Element } from '@angular/compiler';
+//import { Element } from '@angular/compiler';
 
 
 @Component({

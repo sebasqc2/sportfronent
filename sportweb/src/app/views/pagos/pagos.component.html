@@ -1,0 +1,157 @@
+<div class="container">
+    <!-- Vertical navbar --
+    <div class="vertical-nav bg-white" id="sidebar">
+        <div class="py-4 px-3 mb-4 bg-light">
+            <div class="media d-flex align-items-center">
+                <div class="media-body">
+                    <br>
+                    <h4 class="m-0">Pedro Arvelaez</h4>
+                    <p class="font-weight-light text-muted mb-0">Docente</p>
+                    <br>
+                </div>
+            </div>
+        </div>
+
+        <p class="text-gray font-weight-bold text-uppercase px-3 small pb-4 mb-0">Menu</p>
+
+        <ul class="nav flex-column bg-white mb-0">
+            <li class="nav-item">
+                <a href="#" class="nav-link text-dark font-italic bg-light">
+                    <i class="fa fa-address-card mr-3 text-primary fa-fw"></i> Estudiantes
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link text-dark font-italic">
+                    <i class="fas fa-search mr-3 text-primary fa-fw"></i> Ver pagos
+                </a>
+            </li>
+        </ul>
+    </div>
+    <!- End vertical navbar -->
+
+    <div class="page-content p-5" id="content">
+        <button id="sidebarCollapse" type="button" class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4"><i
+        class="fa fa-bars mr-2"></i><small class="text-uppercase font-weight-bold">MENU</small></button>
+
+        <h1 style="text-align: center;">VER PAGO ESTUDIANTES </h1>
+        <br>
+        <br>
+        <div action="/action_page.php" (ngSubmit)="onSubmit()"></div>
+        <br>
+        <div class="row">
+            <div class="col-sm-6">
+                <input type="text" class="form-control" name='codigo' [(ngModel)]=" this.entrada" placeholder='Codigo' />
+            </div>
+            <div class="col-sm-4">
+
+                <input type="month" class="form-control" name='fecha' [(ngModel)]="this.entradaF" placeholder='Fecha' />
+
+
+            </div>
+            <div class="col-sm-1">
+                <button type="submit" class="btn btn-success" (click)="getBuscarFilter()">Buscar</button>
+            </div>
+            <div class="col-sm-1">
+                <button type="submit" class="btn btn-light" (click)="getLimpiarFilter()">Limpiar</button>
+            </div>
+        </div>
+        <br>
+        <br>
+        <div class="row">
+            <div class="col-sm-12">
+                <table class="table table-sm">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>CODIGO</th>
+                            <th>NOMBRE</th>
+                            <th>APELLIDO</th>
+                            <th>PAGO</th>
+                            <th>PERIODO</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let i of model">
+                            <td>{{i.ID_ALUMNO}}</td>
+                            <td>{{i.NOMBRE}} </td>
+                            <td>{{i.APELLIDO}} </td>
+                            <td>{{i.ESTADO}}</td>
+                            <td>
+                                <a href="#" class="nav-link text-dark font-italic">
+                                    <i class="fa fa-server  mr-3 text-primary fa-fw"></i>
+                                </a>
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+
+
+            <ng-template #myModalInfo let-modal>
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Información Estudiante</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="modal.close()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group" style="text-align: justify; font-size: 1.2em">
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <label for="formGroupExampleInput">Código: </label>
+                                    </div>
+                                    <div class="col-sm-7">
+                                        <input type="text" type="text" class="form-control" id="nombre" [(ngModel)]="this.infoAlumno.ID_ALUMNO" name="codigo" disabled>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <label for="formGroupExampleInput2">Nombre: </label>
+                                    </div>
+                                    <div class="col-sm-7">
+                                        <input type="text" type="text" class="form-control" id="nombre" [(ngModel)]="this.infoAlumno.NOMBRE" name="nombre" disabled>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <label for="formGroupExampleInput2">Apellido: </label>
+                                    </div>
+                                    <div class="col-sm-7">
+                                        <input type="text" type="text" class="form-control" id="nombre" [(ngModel)]="this.infoAlumno.APELLIDO" name="apellido" disabled>
+                                    </div>
+                                </div>
+                                <br>
+                            </div>
+                        </form>
+
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <table class="table table-sm">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Nombre</th>
+                                            <th>Valor</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let i of infoAlumno.ID_ALUMNO">
+                                            <td>{{i.ID_VALORACION}}</td>
+                                            <td>{{i.NOMBRE}}</td>
+                                            <td>{{i.VALOR}}</td>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ng-template>
+
+
+
+
+        </div>
+    </div>

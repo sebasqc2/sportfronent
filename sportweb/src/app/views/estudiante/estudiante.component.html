@@ -13,11 +13,11 @@
                 </div>
                 <div class="col-sm-1"></div>
                 <div class="col-sm-1">
-                    <button type="submit" class="btn btn-success" (click)="getBuscar()">Cargar</button>
+                    <button type="submit" class="btn btn-success" (click)="busqueda()">Cargar</button>
                 </div>
                 <div class="col-sm-1"></div>
                 <div class="col-sm-1">
-                    <button type="button" class="btn btn-light" (click)="getEstudiantes()">Limpiar</button>
+                    <button type="button" class="btn btn-light" (click)="getDatosEstudiantes()">Limpiar</button>
                 </div>
                 <div class="col-sm-2"></div>
             </div>
@@ -52,7 +52,7 @@
                             <td>{{i.CORREO}} </td>
                             <td>{{i.ESTADO}} </td>
                             <td>{{i.FECHA_INGRESO}} </td>
-                            <td><a href="#" (click)="mostrarAcudiente(i)">{{i.acudiente.ID_ACUDIENTE}}</a></td>
+                            <td><a (click)="mostrarAcudiente(i)">{{i.acudiente.ID_ACUDIENTE}}</a></td>
                             <td>
                                 <button type="submit" class="btn btn btn-light " (click)="mostrarUniforme(i)">
                   <i class="icon fa fa-shopping-bag mr-3 text-primary fa-fw"></i>
@@ -86,7 +86,7 @@
                                     <label for="formGroupExampleInput">Código: </label>
                                 </div>
                                 <div class="col-sm-7">
-                                    <input type="text" type="text" class="form-control" id="nombre" [(ngModel)]="this.infoAlumno.ID_ALUMNO" name="codigo" disabled>
+                                    <input type="text" type="text" class="form-control" [(ngModel)]="this.infoAlumno.ID_ALUMNO" name="codigo" disabled>
                                 </div>
                             </div>
                             <div class="row">
@@ -94,7 +94,7 @@
                                     <label for="formGroupExampleInput2">Nombre: </label>
                                 </div>
                                 <div class="col-sm-7">
-                                    <input type="text" type="text" class="form-control" id="nombre" [(ngModel)]="this.infoAlumno.NOMBRE" name="nombre" disabled>
+                                    <input type="text" type="text" class="form-control" [(ngModel)]="this.infoAlumno.NOMBRE" name="nombre" disabled>
                                 </div>
                             </div>
                             <div class="row">
@@ -102,7 +102,7 @@
                                     <label for="formGroupExampleInput2">Apellido: </label>
                                 </div>
                                 <div class="col-sm-7">
-                                    <input type="text" type="text" class="form-control" id="nombre" [(ngModel)]="this.infoAlumno.APELLIDO" name="apellido" disabled>
+                                    <input type="text" type="text" class="form-control" [(ngModel)]="this.infoAlumno.APELLIDO" name="apellido" disabled>
                                 </div>
                             </div>
                             <br>

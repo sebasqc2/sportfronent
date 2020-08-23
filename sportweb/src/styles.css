@@ -20,6 +20,8 @@ also import other style files */ .largeModal .modal-dialog {
     max-width: 500px;
 }
 
+
+/*
 body {
     display: flex;
     min-height: 100vh;
@@ -28,4 +30,4 @@ body {
 
 main {
     flex: 1 0 auto;
-}
+}*/
