@@ -2,8 +2,8 @@ import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
 import { Alumno2 } from '../../shared/model/alumno2';
 import { Pago } from '../../shared/model/pago';
 import { CrudServiceService } from '../../shared/services/crud-service.service';
-//import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-//import Swal from 'sweetalert2';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-pagos',

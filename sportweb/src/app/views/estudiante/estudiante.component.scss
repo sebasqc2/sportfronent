@@ -1,3 +1,4 @@
+@import "~bootstrap/dist/css/bootstrap.css";
 .registrationContainer {
     padding: 10px;
 }
@@ -54,6 +55,7 @@ table td {
 
 .page-content {
     width: 100%;
+    /*width: calc(100% - 17rem);*/
     margin-left: 50;
     transition: all 0.4s;
 }

@@ -1,10 +1,9 @@
 import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
-//import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-//import Swal from 'sweetalert2';
-
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import Swal from 'sweetalert2';
 import { Alumno } from '../../shared/model/alumno';
 import { Acudiente } from '../../shared/model/acudiente';
-import { CrudServiceService } from '..//../shared/services/crud-service.service';
+import { CrudServiceService } from '../../shared/services/crud-service.service';
 
 @Component({
   selector: 'app-estudiante',
@@ -12,8 +11,8 @@ import { CrudServiceService } from '..//../shared/services/crud-service.service'
   styleUrls: ['./estudiante.component.scss']
 })
 export class EstudianteComponent implements OnInit {
-  @ViewChild('myModalInfo', { static: false }) myModalInfo: TemplateRef<any>;
-  @ViewChild('AcudienteInfo', { static: false }) AcudienteInfo: TemplateRef<any>;
+  @ViewChild("myModalInfo", { static: false }) myModalInfo: TemplateRef<any>;
+  @ViewChild("AcudienteInfo", { static: false }) AcudienteInfo: TemplateRef<any>;
 
   model: Array<Alumno>;
   entrada: string;
@@ -24,8 +23,7 @@ export class EstudianteComponent implements OnInit {
   usuario: string = localStorage.getItem('usuario');
   rol: string = localStorage.getItem('rol');
 
-  constructor(private crudServices: CrudServiceService
-    , private modalService: NgbModal
+  constructor(private crudServices: CrudServiceService, private modalService: NgbModal
     ) {
 
     this.model = [];
@@ -50,14 +48,14 @@ export class EstudianteComponent implements OnInit {
     });
   }
 
-  mostrarAcudiente(alumno: Alumno): void {
+  mostrarAcudiente(alumno: Alumno) {
     this.infoAcudiente = alumno.acudiente;
-    this.modalService.open(this.AcudienteInfo, {size: 'lg'});
+    this.modalService.open(this.AcudienteInfo,{size: 'lg'});
   }
 
-  mostrarInfo(alumno: Alumno): void {
+  mostrarInfo(alumno: Alumno) {
     this.infoAlumno = alumno;
-    this.modalService.open(this.myModalInfo, {size: 'lg'});
+    this.modalService.open(this.myModalInfo,{size: 'lg'});
   }
 
 

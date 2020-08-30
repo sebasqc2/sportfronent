@@ -25,11 +25,13 @@
                         ],
                         "styles": [
                             "node_modules/bootstrap/dist/css/bootstrap.min.css",
-                            "./node_modules/materialize-css/dist/css/materialize.min.css",
+                            "node_modules/materialize-css/dist/css/materialize.min.css",
                             "src/styles.css"
                         ],
                         "scripts": [
-
+                            "node_modules/jquery/jquery.min.js",
+                            "node_modules/bootstrap/dist/js/bootstrap.min.js",
+                            "node_modules/materialize-css/dist/js/materialize.min.js"
                         ]
                     },
                     "configurations": {
@@ -89,12 +91,14 @@
                             "src/assets"
                         ],
                         "styles": [
-                            "../sportweb/node_modules/materialize-css/dist/css/materialize.css",
+                            "node_modules/bootstrap/dist/css/bootstrap.min.css",
+                            "node_modules/materialize-css/dist/css/materialize.min.css",
                             "src/styles.css"
                         ],
                         "scripts": [
-                            "../sportweb/node_modules/jquery/dist/jquery.js",
-                            "../sportweb/node_modules/materialize-css/dist/js/materialize.js"
+                            "node_modules/jquery/jquery.min.js",
+                            "node_modules/bootstrap/dist/js/bootstrap.min.js",
+                            "node_modules/materialize-css/dist/js/materialize.min.js"
                         ]
                     }
                 },

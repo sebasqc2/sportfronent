@@ -5,7 +5,7 @@ import { NgForm } from '@angular/forms';
 import { UsuarioModel} from '../../shared/model/usuario.model';
 import {AuthService} from '../../shared/services/auth.service';
 
-//import Swal from 'sweetalert2';
+import Swal from 'sweetalert2';
 
 
 @Component({

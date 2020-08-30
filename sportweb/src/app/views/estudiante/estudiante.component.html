@@ -1,7 +1,7 @@
 <app-sidenav></app-sidenav>
 <div class="container-sport100">
 
-    <div class="page-content p-12 align-items-center" id="content">
+    <div class="page-content p-6 align-items-center" id="content">
         <!--<button id="sidebarCollapse" type="button" class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4"><i
         class="fa fa-bars mr-2"></i><small class="text-uppercase font-weight-bold">MENU</small></button>-->
         <div class="container ">
@@ -75,8 +75,8 @@
                 <div class="modal-header">
                     <h5 class="modal-title">Información Estudiante</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="modal.close()">
-            <span aria-hidden="true">&times;</span>
-          </button>
+                <span aria-hidden="true">&times;</span>
+              </button>
                 </div>
                 <div class="modal-body">
                     <form>
@@ -86,7 +86,7 @@
                                     <label for="formGroupExampleInput">Código: </label>
                                 </div>
                                 <div class="col-sm-7">
-                                    <input type="text" type="text" class="form-control" [(ngModel)]="this.infoAlumno.ID_ALUMNO" name="codigo" disabled>
+                                    <input type="text" type="text" class="form-control" id="nombre" [(ngModel)]="this.infoAlumno.ID_ALUMNO" name="codigo" disabled>
                                 </div>
                             </div>
                             <div class="row">
@@ -94,7 +94,7 @@
                                     <label for="formGroupExampleInput2">Nombre: </label>
                                 </div>
                                 <div class="col-sm-7">
-                                    <input type="text" type="text" class="form-control" [(ngModel)]="this.infoAlumno.NOMBRE" name="nombre" disabled>
+                                    <input type="text" type="text" class="form-control" id="nombre" [(ngModel)]="this.infoAlumno.NOMBRE" name="nombre" disabled>
                                 </div>
                             </div>
                             <div class="row">
@@ -102,7 +102,7 @@
                                     <label for="formGroupExampleInput2">Apellido: </label>
                                 </div>
                                 <div class="col-sm-7">
-                                    <input type="text" type="text" class="form-control" [(ngModel)]="this.infoAlumno.APELLIDO" name="apellido" disabled>
+                                    <input type="text" type="text" class="form-control" id="nombre" [(ngModel)]="this.infoAlumno.APELLIDO" name="apellido" disabled>
                                 </div>
                             </div>
                             <br>
@@ -132,6 +132,7 @@
                 </div>
             </div>
         </ng-template>
+
 
         <ng-template #AcudienteInfo let-modal>
             <div class="modal-content">
