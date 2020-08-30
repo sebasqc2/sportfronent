@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { EstudianteComponent } from './views/estudiante/estudiante.component';
+import { DocenteComponent} from './views/docente/docente.component';
 import { LoginComponent } from './views/login/login.component';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './views/navbar/navbar.component';
@@ -20,6 +21,7 @@ import { VeractividadeslistaComponent } from './views/veractividadeslista/veract
     SidenavComponent,
     VeractividadeslistaComponent,
     EstudianteComponent,
+    DocenteComponent,
     LoginComponent
 
   ],

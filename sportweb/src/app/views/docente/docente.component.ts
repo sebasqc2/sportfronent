@@ -2,25 +2,27 @@ import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import Swal from 'sweetalert2';
 
-import { Alumno } from '../../shared/model/alumno';
-import { Acudiente } from '../../shared/model/acudiente';
-import { CrudServiceService } from '..//../shared/services/crud-service.service';
+import { Entrenador } from '../../shared/model/entrenador';
+import { Categoria } from '../../shared/model/categoria';
+import { Deporte } from '../../shared/model/deporte';
+import { CrudServiceService } from '../../shared/services/crud-service.service';
 
 @Component({
-  selector: 'app-estudiante',
-  templateUrl: './estudiante.component.html',
-  styleUrls: ['./estudiante.component.scss']
+  selector: 'app-docente',
+  templateUrl: './docente.component.html',
+  styleUrls: ['./docente.component.scss']
 })
-export class EstudianteComponent implements OnInit {
+export class DocenteComponent implements OnInit {
   @ViewChild('myModalInfo', { static: false }) myModalInfo: TemplateRef<any>;
-  @ViewChild('AcudienteInfo', { static: false }) AcudienteInfo: TemplateRef<any>;
+  @ViewChild('myModalEstudiantes', { static: false }) myModalEstudiantes: TemplateRef<any>;
 
-  model: Array<Alumno>;
-  copia: Array<Alumno>;
+  model: Array<Entrenador>;
+  copia: Array<Entrenador>;
   entrada: string;
   bandera: boolean;
-  infoAlumno: Alumno;
-  infoAcudiente: Acudiente;
+  infoEntrenador: Entrenador;
+  infoCategoria: Categoria;
+  modelCategoria: Array<Categoria>;
 
   usuario: string = localStorage.getItem('usuario');
   rol: string = localStorage.getItem('rol');
@@ -29,15 +31,17 @@ export class EstudianteComponent implements OnInit {
 
     this.model = [];
     this.copia = [];
-    this.infoAlumno = new Alumno();
-    this.infoAcudiente = new Acudiente();
+    this.modelCategoria = [];
+    this.infoEntrenador = new Entrenador();
+    this.infoCategoria = new Categoria();
     this.entrada = '';
     this.bandera = false;
   }
 
   // tslint:disable-next-line: typedef
   ngOnInit() {
-    this.getEstudiantes();
+    this.getEntrenadores();
+    this.getCategorias();
   }
 
   // tslint:disable-next-line: typedef
@@ -50,24 +54,16 @@ export class EstudianteComponent implements OnInit {
   }
 
   // tslint:disable-next-line: typedef
-  mostrarUniforme(alumno: Alumno) {
-    Swal.fire({
-      icon: 'error',
-      title: 'Oops...',
-      text: 'Página en construcción',
-    });
-  }
-
-  // tslint:disable-next-line: typedef
-  mostrarAcudiente(alumno: Alumno) {
-    this.infoAcudiente = alumno.acudiente;
-    this.modalService.open(this.AcudienteInfo, { size: 'lg' });
-  }
-
-  // tslint:disable-next-line: typedef
-  mostrarInfo(alumno: Alumno) {
-    this.infoAlumno = alumno;
+  mostrarInfo(entrenador: Entrenador) {
+    this.infoEntrenador = entrenador;
     this.modalService.open(this.myModalInfo, { size: 'lg' });
+  }
+
+  // tslint:disable-next-line: typedef
+  mostrarEstudiantes(categoria: Categoria) {
+    this.infoCategoria = categoria;
+    this.listaEstudiantes();
+    this.modalService.open(this.myModalEstudiantes, { size: 'lg' });
   }
 
   // tslint:disable-next-line: typedef
@@ -80,8 +76,8 @@ export class EstudianteComponent implements OnInit {
   }
 
   // tslint:disable-next-line: typedef
-  getEstudiantes() {
-    this.crudServices.getModel('alumnos').subscribe(
+  getEntrenadores() {
+    this.crudServices.getModel('entrenadors').subscribe(
       data => {
         if (JSON.stringify(data) === '[]') {
           Swal.fire({
@@ -113,13 +109,23 @@ export class EstudianteComponent implements OnInit {
     } else {
       Swal.fire({ icon: 'error', title: 'Error...', text: 'Campo requerido' });
     }
+  }
 
+  // tslint:disable-next-line: typedef
+  getCategorias() {
+    this.crudServices.getModel('categorias').subscribe(
+      data => {
+        this.modelCategoria = data;
+        return;
+      }, (err) => {
+        console.log('Error: Interno id');
+      });
   }
 
   // tslint:disable-next-line: typedef
   getBuscarCodigo() {
     for (var i = 0; i < this.copia.length; i++) {
-      if ((this.copia[i].ID_ALUMNO).toString() === this.entrada) {
+      if ((this.copia[i].ID_ENTRENADOR).toString() === this.entrada) {
         this.model = [];
         this.model.push(this.copia[i]);
         this.bandera = true;
@@ -140,5 +146,17 @@ export class EstudianteComponent implements OnInit {
     }
     this.limpiarBusqueda();
     Swal.fire({ icon: 'warning', title: 'Error...', text: 'No se ha encontrado entrenador!' });
+  }
+
+  listaEstudiantes() {
+    for (var i = 0; i < this.modelCategoria.length; i++) {
+      if (this.infoCategoria.ID_CATEGORIA.toString() === this.modelCategoria[i].ID_CATEGORIA.toString()) {
+        for (var j = 0; j < this.modelCategoria[i].alumnos.length; j++) {
+          this.infoCategoria.alumnos = [];
+          this.infoCategoria.alumnos.push(this.modelCategoria[i].alumnos[j]);
+        }
+        return;
+      }
+    }
   }
 }
