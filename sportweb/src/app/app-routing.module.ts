@@ -6,6 +6,8 @@ import { VeractividadeslistaComponent } from './views/veractividadeslista/veract
 import { LoginComponent } from './views/login/login.component';
 import {EstudianteComponent} from './views/estudiante/estudiante.component';
 import {PagosComponent} from './views/pagos/pagos.component';
+import { DocenteComponent } from './views/docente/docente.component';
+
 
 const routes: Routes = [
   {path: 'home', component: AppComponent },
@@ -13,6 +15,7 @@ const routes: Routes = [
   { path: 'login'   , component: LoginComponent },
   { path: 'estudiantes', component: EstudianteComponent },
   { path: 'pagos', component: PagosComponent },
+  { path: 'docentes', component: DocenteComponent },
   { path: '**', redirectTo: 'login' }
 
 

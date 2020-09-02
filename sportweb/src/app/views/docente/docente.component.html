@@ -1,14 +1,14 @@
 <app-sidenav></app-sidenav>
 <div class="container-sport100">
-
-    <div class="page-content p-6 align-items-center" id="content">
+    <div class="page-content p-12 align-items-center" id="content">
         <!--<button id="sidebarCollapse" type="button" class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4"><i
         class="fa fa-bars mr-2"></i><small class="text-uppercase font-weight-bold">MENU</small></button>-->
         <div class="container ">
-            <h1 style="text-align: center;">VER ESTUDIANTES </h1>
+            <h1 style="text-align: center;">VER ENTRENADOR </h1>
             <div class=" row ">
                 <div class="col-sm-6">
-                    <input type="text" class="form-control" placeholder="Buscar por nombre o codigo..." [(ngModel)]="this.entrada" required>
+                    <input type="text" class="form-control" placeholder="Buscar por nombre o codigo..."
+                        [(ngModel)]="this.entrada" required>
                     <br>
                 </div>
                 <div class="col-sm-1"></div>
@@ -21,51 +21,38 @@
                 </div>
                 <div class="col-sm-2"></div>
             </div>
-
             <div class=" tabla  ">
                 <div class="col-sm-12 align-items-center">
                     <table class="table table-responsive table table-sm ">
                         <thead class="thead-dark">
                             <tr>
-                                <th>CODIGO</th>
+                                <th>CÓDIGO</th>
                                 <th>NOMBRE</th>
                                 <th>APELLIDO</th>
-                                <th>FECHA NACIMIENTO</th>
                                 <th>DIRECCIÓN</th>
                                 <th>TELÉFONO</th>
                                 <th>CORREO</th>
                                 <th>ESTADO</th>
-                                <th>FECHA INGRESO</th>
-                                <th>ACUDIENTE</th>
-                                <th>UNIFORME</th>
+                                <th>SALARIO</th>
+                                <th>FECHA CONTRATACIÓN</th>
                                 <th>CATEGORIA</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr *ngFor="let i of model">
-                                <td>{{i.ID_ALUMNO}}</td>
+                                <td>{{i.ID_ENTRENADOR}}</td>
                                 <td>{{i.NOMBRE}} </td>
                                 <td>{{i.APELLIDO}} </td>
-                                <td>{{i.FECHA_NACIMIENTO}} </td>
                                 <td>{{i.DIRECCION}} </td>
                                 <td>{{i.TELEFONO}} </td>
                                 <td>{{i.CORREO}} </td>
                                 <td>{{i.ESTADO}} </td>
-                                <td>{{i.FECHA_INGRESO}} </td>
-                                <td>
-                                    <button type="submit" class="btn btn btn-light " (click)="mostrarAcudiente(i)">
-                                <a>{{i.acudiente.ID_ACUDIENTE}}</a>
-                              </button>
-                                </td>
-                                <td>
-                                    <button type="submit" class="btn btn btn-light " (click)="mostrarUniforme(i)">
-                                <i class="icon fa fa-shopping-bag mr-3 fa-fw"></i>
-                            </button>
-                                </td>
+                                <td>{{i.SALARIO}} </td>
+                                <td>{{i.FECHA_CONTRATACION}} </td>
                                 <td>
                                     <button type="submit" class="btn btn btn-light " (click)="mostrarInfo(i)">
-                                <i class="icon fas fa-sitemap mr-3 fa-fw"></i>
-                            </button>
+                                        <i class="icon fas fa-sitemap mr-3 fa-fw"></i>
+                                    </button>
                                 </td>
                             </tr>
                         </tbody>
@@ -73,13 +60,14 @@
                 </div>
             </div>
         </div>
+
         <ng-template #myModalInfo let-modal>
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Información Estudiante</h5>
+                    <h5 class="modal-title">Categorías</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="modal.close()">
-                <span aria-hidden="true">&times;</span>
-              </button>
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
                 <div class="modal-body">
                     <form>
@@ -89,7 +77,8 @@
                                     <label for="formGroupExampleInput">Código: </label>
                                 </div>
                                 <div class="col-sm-7">
-                                    <input type="text" type="text" class="form-control" id="nombre" [(ngModel)]="this.infoAlumno.ID_ALUMNO" name="codigo" disabled>
+                                    <input type="text" type="text" class="form-control" id="nombre"
+                                        [(ngModel)]="this.infoEntrenador.ID_ENTRENADOR" name="codigo" disabled>
                                 </div>
                             </div>
                             <div class="row">
@@ -97,7 +86,8 @@
                                     <label for="formGroupExampleInput2">Nombre: </label>
                                 </div>
                                 <div class="col-sm-7">
-                                    <input type="text" type="text" class="form-control" id="nombre" [(ngModel)]="this.infoAlumno.NOMBRE" name="nombre" disabled>
+                                    <input type="text" type="text" class="form-control" id="nombre"
+                                        [(ngModel)]="this.infoEntrenador.NOMBRE" name="nombre" disabled>
                                 </div>
                             </div>
                             <div class="row">
@@ -105,7 +95,8 @@
                                     <label for="formGroupExampleInput2">Apellido: </label>
                                 </div>
                                 <div class="col-sm-7">
-                                    <input type="text" type="text" class="form-control" id="nombre" [(ngModel)]="this.infoAlumno.APELLIDO" name="apellido" disabled>
+                                    <input type="text" type="text" class="form-control" id="nombre"
+                                        [(ngModel)]="this.infoEntrenador.APELLIDO" name="apellido" disabled>
                                 </div>
                             </div>
                             <br>
@@ -117,16 +108,23 @@
                             <table class="table table-sm">
                                 <thead class="thead-dark">
                                     <tr>
-                                        <th>ID</th>
-                                        <th>Nombre</th>
-                                        <th>Valor</th>
+                                        <th>ID CATEGORÍA</th>
+                                        <th>NOMBRE</th>
+                                        <th>DEPORTE</th>
+                                        <th>ALUMNOS</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr *ngFor="let i of infoAlumno.valoraciones">
-                                        <td>{{i.ID_VALORACION}}</td>
-                                        <td>{{i.NOMBRE}}</td>
-                                        <td>{{i.VALOR}}</td>
+                                    <tr *ngFor="let i of infoEntrenador.categorias">
+                                        <td>{{i.ID_CATEGORIA}}</td>
+                                        <td>{{i.NOMBRE_CATEGORIA}}</td>
+                                        <td>{{i.deporte}}</td>
+                                        <td>
+                                            <button type="submit" class="btn btn btn-light "
+                                                (click)="mostrarEstudiantes(i)">
+                                                <i class="icon fas fa-users mr-3 fa-fw"></i>
+                                            </button>
+                                        </td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -136,14 +134,13 @@
             </div>
         </ng-template>
 
-
-        <ng-template #AcudienteInfo let-modal>
+        <ng-template #myModalEstudiantes let-modal>
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Información Acudiente</h5>
+                    <h5 class="modal-title">Listado Estudiantes</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="modal.close()">
-            <span aria-hidden="true">&times;</span>
-          </button>
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
                 <div class="modal-body">
                     <form>
@@ -153,64 +150,52 @@
                                     <label for="formGroupExampleInput">Código: </label>
                                 </div>
                                 <div class="col-sm-7">
-                                    <input type="text" type="text" class="form-control" id="codigoA" [(ngModel)]="this.infoAcudiente.ID_ACUDIENTE" name="codigo" disabled>
+                                    <input type="text" type="text" class="form-control" id="nombre"
+                                        [(ngModel)]="this.infoCategoria.ID_CATEGORIA" name="codigo" disabled>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-sm-4">
-                                    <label for="formGroupExampleInput2">Nombre: </label>
+                                    <label for="formGroupExampleInput2">Categoria: </label>
                                 </div>
                                 <div class="col-sm-7">
-                                    <input type="text" type="text" class="form-control" id="nombreA" [(ngModel)]="this.infoAcudiente.NOMBRE" name="nombre" disabled>
+                                    <input type="text" type="text" class="form-control" id="nombre"
+                                        [(ngModel)]="this.infoCategoria.NOMBRE_CATEGORIA" name="nombre" disabled>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-sm-4">
-                                    <label for="formGroupExampleInput2">Apellido: </label>
+                                    <label for="formGroupExampleInput2">Deporte: </label>
                                 </div>
                                 <div class="col-sm-7">
-                                    <input type="text" type="text" class="form-control" id="apellidoA" [(ngModel)]="this.infoAcudiente.APELLIDO" name="apellido" disabled>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-4">
-                                    <label for="formGroupExampleInput2">Direccion: </label>
-                                </div>
-                                <div class="col-sm-7">
-                                    <input type="text" type="text" class="form-control" id="direccionA" [(ngModel)]="this.infoAcudiente.DIRECCION" name="direccion" disabled>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-4">
-                                    <label for="formGroupExampleInput2">Telefono: </label>
-                                </div>
-                                <div class="col-sm-7">
-                                    <input type="text" type="text" class="form-control" id="telefonoA" [(ngModel)]="this.infoAcudiente.TELEFONO" name="telefono" disabled>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-4">
-                                    <label for="formGroupExampleInput2">Correo: </label>
-                                </div>
-                                <div class="col-sm-7">
-                                    <input type="text" type="text" class="form-control" id="correoA" [(ngModel)]="this.infoAcudiente.CORREO" name="correo" disabled>
+                                    <input type="text" type="text" class="form-control" id="nombre"
+                                        [(ngModel)]="this.infoCategoria.deporte" name="apellido" disabled>
                                 </div>
                             </div>
                             <br>
-                            <div class="row">
-                                <div class="col-sm-2"></div>
-                                <div class="col-sm-4">
-                                    <label for="formGroupExampleInput">Contrato: </label>
-                                </div>
-                                <div class="col-sm-4">
-                                    <button type="submit" class="btn btn btn-light ">
-                    <i class="icon fa fa-file mr-3 text-primary fa-fw"></i>
-                  </button>
-                                </div>
-                                <div class="col-sm-2"></div>
-                            </div>
                         </div>
                     </form>
+
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <table class="table table-sm">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th>CÓDIGO</th>
+                                        <th>NOMBRE</th>
+                                        <th>APELLIDO</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let i of infoCategoria.alumnos">
+                                        <td>{{i.ID_ALUMNO}}</td>
+                                        <td>{{i.NOMBRE}}</td>
+                                        <td>{{i.APELLIDO}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </div>
         </ng-template>

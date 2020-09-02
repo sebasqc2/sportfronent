@@ -26,6 +26,11 @@
         <li>
             <div class="divider"></div>
         </li>
+        <li *ngIf="validador"><a routerLink="/docentes"> Informe Docentes</a></li>
+
+        <li *ngIf="validador">
+            <div class="divider"></div>
+        </li>
 
         <li><a class="waves-effect" routerLink="/pagos">Informe Pagos mensuales </a></li>
 

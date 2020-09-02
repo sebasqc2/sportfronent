@@ -9,10 +9,14 @@ import * as M from '../../../../node_modules/materialize-css/dist/js/materialize
 export class SidenavComponent implements OnInit {
   usuario: string = localStorage.getItem('usuario');
   rol: string = localStorage.getItem('rol');
+  validador: boolean;
   constructor() { }
 
   ngOnInit(): void {
-    let elems = document.querySelectorAll('.sidenav');
-    let instances = M.Sidenav.init(elems);
+    const elems = document.querySelectorAll('.sidenav');
+    const instances = M.Sidenav.init(elems);
+    if (this.rol === 'administrador') {
+      this.validador = true;
+    }
   }
 }
